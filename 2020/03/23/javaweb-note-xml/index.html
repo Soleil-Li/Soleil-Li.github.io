@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>JDBC连接池&amp;JDBCTemplate | Soleil&#39;s blogs</title>
+  <title>XML | Soleil&#39;s blogs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="主要内容1. 数据库连接池  2. Spring JDBC : JDBC Template">
+  <meta name="description" content="今日内容1. XML     1. 概念     2. 语法     3. 解析">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JDBC连接池&amp;JDBCTemplate">
-<meta property="og:url" content="http://yoursite.com/2020/03/16/javaweb-note-JDBC%E8%BF%9E%E6%8E%A5%E6%B1%A0-JDBCTemplate/index.html">
+<meta property="og:title" content="XML">
+<meta property="og:url" content="http://yoursite.com/2020/03/23/javaweb-note-xml/index.html">
 <meta property="og:site_name" content="Soleil&#39;s blogs">
-<meta property="og:description" content="主要内容1. 数据库连接池  2. Spring JDBC : JDBC Template">
+<meta property="og:description" content="今日内容1. XML     1. 概念     2. 语法     3. 解析">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-03-16T11:40:30.946Z">
-<meta property="article:modified_time" content="2020-03-17T08:06:20.260Z">
+<meta property="article:published_time" content="2020-03-23T12:07:31.084Z">
+<meta property="article:modified_time" content="2020-03-23T12:05:35.437Z">
 <meta property="article:author" content="Soleil">
 <meta property="article:tag" content="javaweb-note">
 <meta name="twitter:card" content="summary">
@@ -155,355 +155,211 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-javaweb-note-JDBC连接池-JDBCTemplate" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-javaweb-note-xml" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      JDBC连接池&amp;JDBCTemplate
+      XML
     </h1>
   
 
         
-        <a href="/2020/03/16/javaweb-note-JDBC%E8%BF%9E%E6%8E%A5%E6%B1%A0-JDBCTemplate/" class="archive-article-date">
-  	<time datetime="2020-03-16T11:40:30.946Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-16</time>
+        <a href="/2020/03/23/javaweb-note-xml/" class="archive-article-date">
+  	<time datetime="2020-03-23T12:07:31.084Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-23</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="主要内容"><a href="#主要内容" class="headerlink" title="主要内容"></a>主要内容</h1><pre><code>1. 数据库连接池
+        <h1 id="今日内容"><a href="#今日内容" class="headerlink" title="今日内容"></a>今日内容</h1><pre><code>1. XML
+    1. 概念
+    2. 语法
+    3. 解析</code></pre><a id="more"></a>
 
-2. Spring JDBC : JDBC Template</code></pre><a id="more"></a>
+<h2 id="XML："><a href="#XML：" class="headerlink" title="XML："></a>XML：</h2><pre><code>1. 概念：Extensible Markup Language 可扩展标记语言
+    * 可扩展：标签都是自定义的。 &lt;user&gt;  &lt;student&gt;
+
+    * 功能
+        * 存储数据
+            1. 配置文件
+            2. 在网络中传输
+    * xml与html的区别
+        1. xml标签都是自定义的，html标签是预定义。
+        2. xml的语法严格，html语法松散
+        3. xml是存储数据的，html是展示数据
+
+    * w3c:万维网联盟
+
+2. 语法：
+    * 基本语法：
+        1. xml文档的后缀名 .xml
+        2. xml第一行必须定义为文档声明
+        3. xml文档中有且仅有一个根标签
+        4. 属性值必须使用引号(单双都可)引起来
+        5. 标签必须正确关闭
+        6. xml标签名称区分大小写
+    * 快速入门：
+        &lt;?xml version=&apos;1.0&apos; ?&gt;
+        &lt;users&gt;
+            &lt;user id=&apos;1&apos;&gt;
+                &lt;name&gt;zhangsan&lt;/name&gt;
+                &lt;age&gt;23&lt;/age&gt;
+                &lt;gender&gt;male&lt;/gender&gt;
+                &lt;br/&gt;
+            &lt;/user&gt;
+
+            &lt;user id=&apos;2&apos;&gt;
+                &lt;name&gt;lisi&lt;/name&gt;
+                &lt;age&gt;24&lt;/age&gt;
+                &lt;gender&gt;female&lt;/gender&gt;
+            &lt;/user&gt;
+        &lt;/users&gt;
+
+    * 组成部分：
+        1. 文档声明
+            1. 格式：&lt;?xml 属性列表 ?&gt;
+            2. 属性列表：
+                * version：版本号，必须的属性
+                * encoding：编码方式。告知解析引擎当前文档使用的字符集，默认值：ISO-8859-1
+                * standalone：是否独立
+                    * 取值：
+                        * yes：不依赖其他文件
+                        * no：依赖其他文件
+        2. 指令(了解)：结合css的
+            * &lt;?xml-stylesheet type=&quot;text/css&quot; href=&quot;a.css&quot; ?&gt;
+        3. 标签：标签名称自定义的
+            * 规则：
+                * 名称可以包含字母、数字以及其他的字符 
+                * 名称不能以数字或者标点符号开始 
+                * 名称不能以字母 xml（或者 XML、Xml 等等）开始 
+                * 名称不能包含空格 
+
+        4. 属性：
+            id属性值唯一
+        5. 文本：
+            * CDATA区：在该区域中的数据会被原样展示
+                * 格式：  &lt;![CDATA[ 数据 ]]&gt;</code></pre><p>​<br>        * 约束：规定xml文档的书写规则<br>            * 作为框架的使用者(程序员)：<br>                1. 能够在xml中引入约束文档<br>                2. 能够简单的读懂约束文档</p>
+<pre><code>* 分类：
+    1. DTD:一种简单的约束技术
+    2. Schema:一种复杂的约束技术
 
 
-<h2 id="数据库连接池"><a href="#数据库连接池" class="headerlink" title="数据库连接池"></a>数据库连接池</h2><pre><code>1. 概念：其实就是一个容器(集合)，存放数据库连接的容器。
-        当系统初始化好后，容器被创建，容器中会申请一些连接对象，当用户来访问数据库时，从容器中获取连接对象，用户访问完之后，会将连接对象归还给容器。
-
-2. 好处：
-    1. 节约资源
-    2. 用户访问高效
-
-3. 实现：
-    1. 标准接口：DataSource   javax.sql包下的
-        1. 方法：
-            * 获取连接：getConnection()
-            * 归还连接：Connection.close()。如果连接对象Connection是从连接池中获取的，那么调用Connection.close()方法，则不会再关闭连接了。而是归还连接
-
-    2. 一般我们不去实现它，有数据库厂商来实现
-        1. C3P0：数据库连接池技术
-        2. Druid：数据库连接池实现技术，由阿里巴巴提供的
+* DTD：
+    * 引入dtd文档到xml文档中
+        * 内部dtd：将约束规则定义在xml文档中
+        * 外部dtd：将约束的规则定义在外部的dtd文件中
+            * 本地：&lt;!DOCTYPE 根标签名 SYSTEM &quot;dtd文件的位置&quot;&gt;
+            * 网络：&lt;!DOCTYPE 根标签名 PUBLIC &quot;dtd文件名字&quot; &quot;dtd文件的位置URL&quot;&gt;
 
 
-4. C3P0：数据库连接池技术
-    * 步骤：
-        1. 导入jar包 (两个) c3p0-0.9.5.2.jar mchange-commons-java-0.2.12.jar ，
-            * 不要忘记导入数据库驱动jar包
-        2. 定义配置文件：
-            * 名称： c3p0.properties 或者 c3p0-config.xml
-            * 路径：直接将文件放在src目录下即可。
+* Schema:
+    * 引入：
+        1.填写xml文档的根元素
+        2.引入xsi前缀.  xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+        3.引入xsd文件命名空间.  xsi:schemaLocation=&quot;http://www.itcast.cn/xml  student.xsd&quot;
+        4.为每一个xsd约束声明一个前缀,作为标识  xmlns=&quot;http://www.itcast.cn/xml&quot; 
 
-        3. 创建核心对象 数据库连接池对象 ComboPooledDataSource
-        4. 获取连接： getConnection
+    &lt;students   xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+        xmlns=&quot;http://www.itcast.cn/xml&quot;
+        xsi:schemaLocation=&quot;http://www.itcast.cn/xml  student.xsd&quot;&gt;</code></pre><p>​    </p>
+<pre><code>3. 解析：操作xml文档，将文档中的数据读取到内存中
+    * 操作xml文档
+        1. 解析(读取)：将文档中的数据读取到内存中
+        2. 写入：将内存中的数据保存到xml文档中。持久化的存储
+
+    * 解析xml的方式：
+        1. DOM：将标记语言文档一次性加载进内存，在内存中形成一颗dom树
+            * 优点：操作方便，可以对文档进行CRUD的所有操作
+            * 缺点：占内存
+        2. SAX：逐行读取，基于事件驱动的。
+            * 优点：不占内存。
+            * 缺点：只能读取，不能增删改</code></pre><p>​<br>        * xml常见的解析器：<br>            1. JAXP：sun公司提供的解析器，支持dom和sax两种思想<br>            2. DOM4J：一款非常优秀的解析器<br>            3. Jsoup：jsoup 是一款Java 的HTML解析器，可直接解析某个URL地址、HTML文本内容。它提供了一套非常省力的API，可通过DOM，CSS以及类似于jQuery的操作方法来取出和操作数据。<br>            4. PULL：Android操作系统内置的解析器，sax方式的。</p>
+<pre><code>* Jsoup：jsoup 是一款Java 的HTML解析器，可直接解析某个URL地址、HTML文本内容。它提供了一套非常省力的API，可通过DOM，CSS以及类似于jQuery的操作方法来取出和操作数据。
+    * 快速入门：
+        * 步骤：
+            1. 导入jar包
+            2. 获取Document对象
+            3. 获取对应的标签Element对象
+            4. 获取数据
+
     * 代码：
-         //1.创建数据库连接池对象
-        DataSource ds  = new ComboPooledDataSource();
-        //2. 获取连接对象
-        Connection conn = ds.getConnection();
-5. Druid：数据库连接池实现技术，由阿里巴巴提供的
-    1. 步骤：
-        1. 导入jar包 druid-1.0.9.jar
-        2. 定义配置文件：
-            * 是properties形式的
-            * 可以叫任意名称，可以放在任意目录下
-        3. 加载配置文件。Properties
-        4. 获取数据库连接池对象：通过工厂来来获取  DruidDataSourceFactory
-        5. 获取连接：getConnection
-    * 代码：
-         //3.加载配置文件
-        Properties pro = new Properties();
-        InputStream is = DruidDemo.class.getClassLoader().getResourceAsStream(&quot;druid.properties&quot;);
-        pro.load(is);
-        //4.获取连接池对象
-        DataSource ds = DruidDataSourceFactory.createDataSource(pro);
-        //5.获取连接
-        Connection conn = ds.getConnection();
-    2. 定义工具类
-        1. 定义一个类 JDBCUtils
-        2. 提供静态代码块加载配置文件，初始化连接池对象
-        3. 提供方法
-            1. 获取连接方法：通过数据库连接池获取连接
-            2. 释放资源
-            3. 获取连接池的方法
+         //2.1获取student.xml的path
+        String path = JsoupDemo1.class.getClassLoader().getResource(&quot;student.xml&quot;).getPath();
+        //2.2解析xml文档，加载文档进内存，获取dom树---&gt;Document
+        Document document = Jsoup.parse(new File(path), &quot;utf-8&quot;);
+        //3.获取元素对象 Element
+        Elements elements = document.getElementsByTag(&quot;name&quot;);
 
+        System.out.println(elements.size());
+        //3.1获取第一个name的Element对象
+        Element element = elements.get(0);
+        //3.2获取数据
+        String name = element.text();
+        System.out.println(name);
 
-    * 代码：
-        public class JDBCUtils {
+* 对象的使用：
+    1. Jsoup：工具类，可以解析html或xml文档，返回Document
+        * parse：解析html或xml文档，返回Document
+            * parse​(File in, String charsetName)：解析xml或html文件的。
+            * parse​(String html)：解析xml或html字符串
+            * parse​(URL url, int timeoutMillis)：通过网络路径获取指定的html或xml的文档对象
+    2. Document：文档对象。代表内存中的dom树
+        * 获取Element对象
+            * getElementById​(String id)：根据id属性值获取唯一的element对象
+            * getElementsByTag​(String tagName)：根据标签名称获取元素对象集合
+            * getElementsByAttribute​(String key)：根据属性名称获取元素对象集合
+            * getElementsByAttributeValue​(String key, String value)：根据对应的属性名和属性值获取元素对象集合
+    3. Elements：元素Element对象的集合。可以当做 ArrayList&lt;Element&gt;来使用
+    4. Element：元素对象
+        1. 获取子元素对象
+            * getElementById​(String id)：根据id属性值获取唯一的element对象
+            * getElementsByTag​(String tagName)：根据标签名称获取元素对象集合
+            * getElementsByAttribute​(String key)：根据属性名称获取元素对象集合
+            * getElementsByAttributeValue​(String key, String value)：根据对应的属性名和属性值获取元素对象集合
 
-            //1.定义成员变量 DataSource
-            private static DataSource ds ;
+        2. 获取属性值
+            * String attr(String key)：根据属性名称获取属性值
+        3. 获取文本内容
+            * String text():获取文本内容
+            * String html():获取标签体的所有内容(包括字标签的字符串内容)
+    5. Node：节点对象
+        * 是Document和Element的父类</code></pre><p>​<br>        * 快捷查询方式：<br>            1. selector:选择器<br>                * 使用的方法：Elements    select​(String cssQuery)<br>                    * 语法：参考Selector类中定义的语法<br>            2. XPath：XPath即为XML路径语言，它是一种用来确定XML（标准通用标记语言的子集）文档中某部分位置的语言<br>                * 使用Jsoup的Xpath需要额外导入jar包。<br>                * 查询w3cshool参考手册，使用xpath的语法完成查询<br>                * 代码：<br>                    //1.获取student.xml的path<br>                    String path = JsoupDemo6.class.getClassLoader().getResource(“student.xml”).getPath();<br>                    //2.获取Document对象<br>                    Document document = Jsoup.parse(new File(path), “utf-8”);</p>
+<pre><code>//3.根据document对象，创建JXDocument对象
+JXDocument jxDocument = new JXDocument(document);
 
-            static{
-                try {
-                    //1.加载配置文件
-                    Properties pro = new Properties();
-                    pro.load(JDBCUtils.class.getClassLoader().getResourceAsStream(&quot;druid.properties&quot;));
-                    //2.获取DataSource
-                    ds = DruidDataSourceFactory.createDataSource(pro);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
+//4.结合xpath语法查询
+//4.1查询所有student标签
+List&lt;JXNode&gt; jxNodes = jxDocument.selN(&quot;//student&quot;);
+for (JXNode jxNode : jxNodes) {
+    System.out.println(jxNode);
+}
 
-            /**
-             * 获取连接
-             */
-            public static Connection getConnection() throws SQLException {
-                return ds.getConnection();
-            }
+System.out.println(&quot;--------------------&quot;);
 
-            /**
-             * 释放资源
-             */
-            public static void close(Statement stmt,Connection conn){
-               /* if(stmt != null){
-                    try {
-                        stmt.close();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                }
+//4.2查询所有student标签下的name标签
+List&lt;JXNode&gt; jxNodes2 = jxDocument.selN(&quot;//student/name&quot;);
+for (JXNode jxNode : jxNodes2) {
+    System.out.println(jxNode);
+}
 
-                if(conn != null){
-                    try {
-                        conn.close();//归还连接
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                }*/
+System.out.println(&quot;--------------------&quot;);
 
-               close(null,stmt,conn);
-            }
+//4.3查询student标签下带有id属性的name标签
+List&lt;JXNode&gt; jxNodes3 = jxDocument.selN(&quot;//student/name[@id]&quot;);
+for (JXNode jxNode : jxNodes3) {
+    System.out.println(jxNode);
+}
+System.out.println(&quot;--------------------&quot;);
+//4.4查询student标签下带有id属性的name标签 并且id属性值为itcast
 
-
-            public static void close(ResultSet rs , Statement stmt, Connection conn){
-
-
-                if(rs != null){
-                    try {
-                        rs.close();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-
-                if(stmt != null){
-                    try {
-                        stmt.close();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                if(conn != null){
-                    try {
-                        conn.close();//归还连接
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-
-            /**
-             * 获取连接池方法
-             */
-
-            public static DataSource getDataSource(){
-                return  ds;
-            }
-
-        }</code></pre><h2 id="Spring-JDBC"><a href="#Spring-JDBC" class="headerlink" title="Spring JDBC"></a>Spring JDBC</h2><pre><code>* Spring框架对JDBC的简单封装。提供了一个JDBCTemplate对象简化JDBC的开发
-* 步骤：
-    1. 导入jar包
-    2. 创建JdbcTemplate对象。依赖于数据源DataSource
-        * JdbcTemplate template = new JdbcTemplate(ds);
-
-    3. 调用JdbcTemplate的方法来完成CRUD的操作
-        * update():执行DML语句。增、删、改语句
-        * queryForMap():查询结果将结果集封装为map集合，将列名作为key，将值作为value 将这条记录封装为一个map集合
-            * 注意：这个方法查询的结果集长度只能是1
-        * queryForList():查询结果将结果集封装为list集合
-            * 注意：将每一条记录封装为一个Map集合，再将Map集合装载到List集合中
-        * query():查询结果，将结果封装为JavaBean对象
-            * query的参数：RowMapper
-                * 一般我们使用BeanPropertyRowMapper实现类。可以完成数据到JavaBean的自动封装
-                * new BeanPropertyRowMapper&lt;类型&gt;(类型.class)
-        * queryForObject：查询结果，将结果封装为对象
-            * 一般用于聚合函数的查询
-
-    4. 练习：
-        * 需求：
-            1. 修改1号数据的 salary 为 10000
-            2. 添加一条记录
-            3. 删除刚才添加的记录
-            4. 查询id为1的记录，将其封装为Map集合
-            5. 查询所有记录，将其封装为List
-            6. 查询所有记录，将其封装为Emp对象的List集合
-            7. 查询总记录数
-
-        * 代码：
-
-            import cn.itcast.domain.Emp;
-            import cn.itcast.utils.JDBCUtils;
-            import org.junit.Test;
-            import org.springframework.jdbc.core.BeanPropertyRowMapper;
-            import org.springframework.jdbc.core.JdbcTemplate;
-            import org.springframework.jdbc.core.RowMapper;
-
-            import java.sql.Date;
-            import java.sql.ResultSet;
-            import java.sql.SQLException;
-            import java.util.List;
-            import java.util.Map;
-
-            public class JdbcTemplateDemo2 {
-
-                //Junit单元测试，可以让方法独立执行
-
-
-                //1. 获取JDBCTemplate对象
-                private JdbcTemplate template = new JdbcTemplate(JDBCUtils.getDataSource());
-                /**
-                 * 1. 修改1号数据的 salary 为 10000
-                 */
-                @Test
-                public void test1(){
-
-                    //2. 定义sql
-                    String sql = &quot;update emp set salary = 10000 where id = 1001&quot;;
-                    //3. 执行sql
-                    int count = template.update(sql);
-                    System.out.println(count);
-                }
-
-                /**
-                 * 2. 添加一条记录
-                 */
-                @Test
-                public void test2(){
-                    String sql = &quot;insert into emp(id,ename,dept_id) values(?,?,?)&quot;;
-                    int count = template.update(sql, 1015, &quot;郭靖&quot;, 10);
-                    System.out.println(count);
-
-                }
-
-                /**
-                 * 3.删除刚才添加的记录
-                 */
-                @Test
-                public void test3(){
-                    String sql = &quot;delete from emp where id = ?&quot;;
-                    int count = template.update(sql, 1015);
-                    System.out.println(count);
-                }
-
-                /**
-                 * 4.查询id为1001的记录，将其封装为Map集合
-                 * 注意：这个方法查询的结果集长度只能是1
-                 */
-                @Test
-                public void test4(){
-                    String sql = &quot;select * from emp where id = ? or id = ?&quot;;
-                    Map&lt;String, Object&gt; map = template.queryForMap(sql, 1001,1002);
-                    System.out.println(map);
-                    //{id=1001, ename=孙悟空, job_id=4, mgr=1004, joindate=2000-12-17, salary=10000.00, bonus=null, dept_id=20}
-
-                }
-
-                /**
-                 * 5. 查询所有记录，将其封装为List
-                 */
-                @Test
-                public void test5(){
-                    String sql = &quot;select * from emp&quot;;
-                    List&lt;Map&lt;String, Object&gt;&gt; list = template.queryForList(sql);
-
-                    for (Map&lt;String, Object&gt; stringObjectMap : list) {
-                        System.out.println(stringObjectMap);
-                    }
-                }
-
-                /**
-                 * 6. 查询所有记录，将其封装为Emp对象的List集合
-                 */
-
-                @Test
-                public void test6(){
-                    String sql = &quot;select * from emp&quot;;
-                    List&lt;Emp&gt; list = template.query(sql, new RowMapper&lt;Emp&gt;() {
-
-                        @Override
-                        public Emp mapRow(ResultSet rs, int i) throws SQLException {
-                            Emp emp = new Emp();
-                            int id = rs.getInt(&quot;id&quot;);
-                            String ename = rs.getString(&quot;ename&quot;);
-                            int job_id = rs.getInt(&quot;job_id&quot;);
-                            int mgr = rs.getInt(&quot;mgr&quot;);
-                            Date joindate = rs.getDate(&quot;joindate&quot;);
-                            double salary = rs.getDouble(&quot;salary&quot;);
-                            double bonus = rs.getDouble(&quot;bonus&quot;);
-                            int dept_id = rs.getInt(&quot;dept_id&quot;);
-
-                            emp.setId(id);
-                            emp.setEname(ename);
-                            emp.setJob_id(job_id);
-                            emp.setMgr(mgr);
-                            emp.setJoindate(joindate);
-                            emp.setSalary(salary);
-                            emp.setBonus(bonus);
-                            emp.setDept_id(dept_id);
-
-                            return emp;
-                        }
-                    });
-
-
-                    for (Emp emp : list) {
-                        System.out.println(emp);
-                    }
-                }
-
-                /**
-                 * 6. 查询所有记录，将其封装为Emp对象的List集合
-                 */
-
-                @Test
-                public void test6_2(){
-                    String sql = &quot;select * from emp&quot;;
-                    List&lt;Emp&gt; list = template.query(sql, new BeanPropertyRowMapper&lt;Emp&gt;(Emp.class));
-                    for (Emp emp : list) {
-                        System.out.println(emp);
-                    }
-                }
-
-                /**
-                 * 7. 查询总记录数
-                 */
-
-                @Test
-                public void test7(){
-                    String sql = &quot;select count(id) from emp&quot;;
-                    Long total = template.queryForObject(sql, Long.class);
-                    System.out.println(total);
-                }
-
-            }</code></pre>
+List&lt;JXNode&gt; jxNodes4 = jxDocument.selN(&quot;//student/name[@id=&apos;itcast&apos;]&quot;);
+for (JXNode jxNode : jxNodes4) {
+    System.out.println(jxNode);
+}</code></pre>
       
 
       
@@ -572,7 +428,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/03/16/javaweb-note-JDBC%E8%BF%9E%E6%8E%A5%E6%B1%A0-JDBCTemplate/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/03/23/javaweb-note-xml/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -586,18 +442,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/03/17/javaweb-note-JDBC/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          JDBC
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/03/16/javaweb-note-Servlet&HTTP&Request/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Servlet&amp;HTTP&amp;Request</div>
+    <a href="/2020/03/18/javaweb-note-Cookie&Session/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Cookie&amp;Session</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -624,7 +471,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#主要内容"><span class="toc-number">1.</span> <span class="toc-text">主要内容</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#数据库连接池"><span class="toc-number">1.1.</span> <span class="toc-text">数据库连接池</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-JDBC"><span class="toc-number">1.2.</span> <span class="toc-text">Spring JDBC</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#今日内容"><span class="toc-number">1.</span> <span class="toc-text">今日内容</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#XML："><span class="toc-number">1.1.</span> <span class="toc-text">XML：</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
