@@ -6,11 +6,11 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>javaweb-note/javaweb-note-SpringCloud | Soleil&#39;s blogs</title>
+  <title>SpringCloud | Soleil&#39;s blogs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="学习目标 了解系统架构的演变 了解RPC与Http的区别 知道什么是SpringCloud 独立搭建Eureka注册中心 独立配置Robbin负载均衡">
 <meta property="og:type" content="article">
-<meta property="og:title" content="javaweb-note&#x2F;javaweb-note-SpringCloud">
+<meta property="og:title" content="SpringCloud">
 <meta property="og:url" content="http://yoursite.com/2020/04/11/javaweb-note/javaweb-note-SpringCloud/index.html">
 <meta property="og:site_name" content="Soleil&#39;s blogs">
 <meta property="og:description" content="学习目标 了解系统架构的演变 了解RPC与Http的区别 知道什么是SpringCloud 独立搭建Eureka注册中心 独立配置Robbin负载均衡">
@@ -77,8 +77,9 @@
 <meta property="og:image" content="http://yoursite.com/2020/04/11/javaweb-note/javaweb-note-SpringCloud/1528782624098.png">
 <meta property="og:image" content="http://yoursite.com/2020/04/11/javaweb-note/javaweb-note-SpringCloud/1528782514987.png">
 <meta property="article:published_time" content="2020-04-11T09:06:05.398Z">
-<meta property="article:modified_time" content="2020-04-12T07:30:50.496Z">
+<meta property="article:modified_time" content="2020-04-12T12:31:22.184Z">
 <meta property="article:author" content="Soleil">
+<meta property="article:tag" content="java-note">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/2020/04/11/javaweb-note/javaweb-note-SpringCloud/1525529091749.png">
   
@@ -223,7 +224,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      javaweb-note/javaweb-note-SpringCloud
+      SpringCloud
     </h1>
   
 
@@ -343,8 +344,6 @@
 <p><img src="/2020/04/11/javaweb-note/javaweb-note-SpringCloud/1534812923451.png" alt="1534812923451"></p>
 <p>首先在项目中注册一个<code>RestTemplate</code>对象，可以在启动类位置注册：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HttpDemoApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		SpringApplication.run(HttpDemoApplication<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Bean</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> RestTemplate <span class="title">restTemplate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">   </span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> RestTemplate();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
 
 <p>在测试类中直接<code>@Autowired</code>注入：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith</span>(SpringRunner<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">@<span class="title">SpringBootTest</span>(<span class="title">classes</span> </span>= HttpDemoApplication<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class"><span class="title">public</span> <span class="title">class</span> <span class="title">HttpDemoApplicationTests</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	<span class="keyword">private</span> RestTemplate restTemplate;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">httpGet</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 调用springboot案例中的rest接口</span></span><br><span class="line">		User user = <span class="keyword">this</span>.restTemplate.getForObject(<span class="string">"http://localhost/user/1"</span>, User<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">		System.out.println(user);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -899,6 +898,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java-note</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -963,18 +973,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/04/11/Test/new/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Test/new
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/04/07/SpringMVC/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">SpringMVC</div>
+    <a href="/2020/04/03/javaweb-note/javaweb-note-Junit-%E5%8F%8D%E5%B0%84-%E6%B3%A8%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">javaweb-note-Junit-反射-注解</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -1117,7 +1118,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">code</a>
+                <a href="javascript:void(0)" class="js-tag color5">java-note</a>
               </li>
             
             <div class="clearfix"></div>
@@ -1200,7 +1201,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">一条咸鱼</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">湖北工业大学-李钊阳</div>
   	  	
     	</section>
     
