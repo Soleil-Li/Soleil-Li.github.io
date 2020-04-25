@@ -152,6 +152,176 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Algorithm/查找" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/25/Algorithm/%E6%9F%A5%E6%89%BE/">Algorithm/查找</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/25/Algorithm/%E6%9F%A5%E6%89%BE/" class="archive-article-date">
+  	<time datetime="2020-04-25T08:12:30.584Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;二分查找（折半查找），循环实现</span><br><span class="line">int BinarySearch1(int a[], int value, int n)</span><br><span class="line">&#123;</span><br><span class="line">    int low, high, mid;</span><br><span class="line">    low &#x3D; 0;</span><br><span class="line">    high &#x3D; n-1;</span><br><span class="line">    while(low&lt;&#x3D;high)</span><br><span class="line">    &#123;</span><br><span class="line">        mid &#x3D; (low+high)&#x2F;2;</span><br><span class="line">        if(a[mid]&#x3D;&#x3D;value)</span><br><span class="line">            return mid;</span><br><span class="line">        else if(a[mid]&gt;value)</span><br><span class="line">            high &#x3D; mid-1;</span><br><span class="line">        else if(a[mid]&lt;value)</span><br><span class="line">            low &#x3D; mid+1;</span><br><span class="line">    &#125;</span><br><span class="line">    return -1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;二分查找，递归实现</span><br><span class="line">int BinarySearch2(int a[], int value, int low, int high)</span><br><span class="line">&#123;</span><br><span class="line">    if(low &lt;&#x3D; high)</span><br><span class="line">    &#123;</span><br><span class="line">        int mid &#x3D; low+(high-low)&#x2F;2;</span><br><span class="line">        if(a[mid]&#x3D;&#x3D;value)</span><br><span class="line">            return mid;</span><br><span class="line">        else if(a[mid]&gt;value)</span><br><span class="line">            return BinarySearch2(a, value, low, mid-1);</span><br><span class="line">        else if(a[mid]&lt;value)</span><br><span class="line">            return BinarySearch2(a, value, mid+1, high);</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">        return -1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="插值查找"><a href="#插值查找" class="headerlink" title="插值查找"></a><strong>插值查找</strong></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;插值查找</span><br><span class="line">int InsertionSearch(int a[], int value, int low, int high)</span><br><span class="line">&#123;</span><br><span class="line">    if(low &lt;&#x3D; high)</span><br><span class="line">    &#123;</span><br><span class="line">        int mid &#x3D; low+(value-a[low])&#x2F;(a[high]-a[low])*(high-low);</span><br><span class="line">        if(a[mid]&#x3D;&#x3D;value)</span><br><span class="line">            return mid;</span><br><span class="line">        if(a[mid]&gt;value)</span><br><span class="line">            return InsertionSearch(a, value, low, mid-1);</span><br><span class="line">        if(a[mid]&lt;value)</span><br><span class="line">            return InsertionSearch(a, value, mid+1, high);</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">        return -1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/25/Algorithm/%E6%9F%A5%E6%89%BE/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Algorithm/排序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/21/Algorithm/%E6%8E%92%E5%BA%8F/">Algorithm/排序</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/21/Algorithm/%E6%8E%92%E5%BA%8F/" class="archive-article-date">
+  	<time datetime="2020-04-21T02:49:32.008Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1、冒泡排序算法-BubbleSort"><a href="#1、冒泡排序算法-BubbleSort" class="headerlink" title="1、冒泡排序算法(BubbleSort)"></a>1、冒泡排序算法(BubbleSort)</h2><h4 id="1-1-算法描述"><a href="#1-1-算法描述" class="headerlink" title="1.1 算法描述"></a>1.1 算法描述</h4><p>（1）比较相邻的元素。如果第一个比第二个大，就交换他们两个。</p>
+<p>（2）对每一对相邻元素做同样的工作，从开始第一对到结尾的最后一对。在这一点，最后的元素应该会是最大的数。</p>
+<p>（3）针对所有的元素重复以上的步骤，除了最后一个。</p>
+<p>（4）持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要比较。</p>
+<p> 最好时间复杂度O（n） 最坏时间复杂度O（n2）</p>
+<h4 id="1-2-动图演示"><a href="#1-2-动图演示" class="headerlink" title="1.2 动图演示"></a>1.2 动图演示</h4><p><img src="/2020/04/21/Algorithm/%E6%8E%92%E5%BA%8F/753725-20180905203117129-715063857.gif" alt></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Class SortDemo</span><br><span class="line">&#123;</span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">BubbleSort</span>(<span class="params"><span class="keyword">int</span> arr</span>)</span></span><br><span class="line"><span class="function"></span>     &#123;</span><br><span class="line">            <span class="keyword">int</span> temp=<span class="number">0</span>;</span><br><span class="line">          <span class="comment">//需要走arr.Length-1 趟</span></span><br><span class="line">           <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;arr.Length<span class="number">-1</span>;i++)</span><br><span class="line">           &#123;</span><br><span class="line">                 <span class="comment">//每一趟需要比较arr.Length-1-i 次</span></span><br><span class="line">                 <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>,j&lt;arr.Length-i<span class="number">-1</span>;j++)</span><br><span class="line">                 &#123;</span><br><span class="line">                     <span class="comment">//升序排序</span></span><br><span class="line">                      <span class="keyword">if</span>(arr[j]&gt;arr[j+<span class="number">1</span>])</span><br><span class="line">                      &#123;</span><br><span class="line">                               temp=arr[j];<span class="comment">//将较大的变量保存在临时变量</span></span><br><span class="line">                               arr[j]=arr[j+<span class="number">1</span>]；</span><br><span class="line">                               arr[j+<span class="number">1</span>]=temp;</span><br><span class="line">                       &#125;   </span><br><span class="line">                 &#125;</span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2、直接插入排序-InsertionSort"><a href="#2、直接插入排序-InsertionSort" class="headerlink" title="2、直接插入排序(InsertionSort)"></a>2、直接插入排序(InsertionSort)</h2><h4 id="2-1-算法描述"><a href="#2-1-算法描述" class="headerlink" title="2.1 算法描述"></a>2.1 算法描述</h4><p>（1）从第一个元素开始，该元素可以认为已经被排序；</p>
+<p>（2）取出下一个元素，在已经排序的元素序列中从后向前扫描；</p>
+<p>（3）如果该元素（已排序）大于新元素，将该元素移到下一位置；</p>
+<p>（4）重复步骤3，直到找到已排序的元素小于或者等于新元素的位置；</p>
+<p>（5） 将新元素插入到该位置后；</p>
+<p>（6）重复步骤2~5。</p>
+<h4 id="2-2-动图演示"><a href="#2-2-动图演示" class="headerlink" title="2.2 动图演示"></a>2.2 动图演示</h4><p><img src="/2020/04/21/Algorithm/%E6%8E%92%E5%BA%8F/753725-20180905204329224-774631396.gif" alt="gif"></p>
+<h4 id="2-3-代码实现"><a href="#2-3-代码实现" class="headerlink" title="2.3 代码实现"></a>2.3 代码实现</h4><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Class SortDemo</span><br><span class="line">&#123;</span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">InsertionSort</span>(<span class="params"><span class="keyword">int</span>[] arr</span>)</span></span><br><span class="line"><span class="function"></span>      &#123;</span><br><span class="line">             <span class="keyword">int</span> temp=<span class="number">0</span>;</span><br><span class="line">             <span class="comment">//遍历待插入的数(从第二位开始) arr.Length-1 趟</span></span><br><span class="line">             <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;arr.Length;i++)</span><br><span class="line">             &#123;</span><br><span class="line">　　　　　　　　　　　　temp=arr[i];<span class="comment">//待插入的数</span></span><br><span class="line">                 </span><br><span class="line">　　　　　　　　　　　　<span class="keyword">int</span> j=i<span class="number">-1</span>;<span class="comment">//（j为已排序的待插入的位置序号）                     </span></span><br><span class="line">                     <span class="comment">//若已排序的数大于待插入数，则往后移一位</span></span><br><span class="line">                     <span class="keyword">while</span>(j&gt;=<span class="number">0</span>&amp;&amp;arr[j]&gt;arr[i])</span><br><span class="line">                     &#123;</span><br><span class="line">                            arr[j+<span class="number">1</span>]=arr[j];</span><br><span class="line">                            j--;</span><br><span class="line">                      &#125;</span><br><span class="line">                 </span><br><span class="line">                     arr[j+<span class="number">1</span>]=temp;<span class="comment">//将待插入的数放入插入位置</span></span><br><span class="line">              &#125;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3、选择排序-SelectionSort"><a href="#3、选择排序-SelectionSort" class="headerlink" title="3、选择排序(SelectionSort)"></a>3、选择排序(SelectionSort)</h2><h4 id="3-1-算法描述"><a href="#3-1-算法描述" class="headerlink" title="3.1 算法描述"></a>3.1 算法描述</h4><p> 选择排序(Selection-sort)是一种简单直观的排序算法。它的工作原理：首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置，然后，再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。以此类推，直到所有元素均排序完毕。 </p>
+<p>（1）初始状态：无序区为R[1..n]，有序区为空；</p>
+<p>（2）第i趟排序(i=1,2,3…n-1)开始时，当前有序区和无序区分别为R[1..i-1]和R(i..n）。该趟排序从当前无序区中-选出关键字最小的记录 R[k]，将它与无序区的第1个记录R交换，使R[1..i]和R[i+1..n)分别变为记录个数增加1个的新有序区和记录个数减少1个的新无序区；</p>
+<p>（3）n-1趟结束，数组有序化了。</p>
+<h4 id="3-2-动图演示"><a href="#3-2-动图演示" class="headerlink" title="3.2 动图演示"></a>3.2 动图演示</h4><p><img src="/2020/04/21/Algorithm/%E6%8E%92%E5%BA%8F/753725-20180905203346884-804471608.gif" alt="gif"></p>
+<h4 id="3-3-代码实现"><a href="#3-3-代码实现" class="headerlink" title="3.3 代码实现"></a>3.3 代码实现</h4><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">SelectionSort</span>(<span class="params"><span class="keyword">int</span>[] arr</span>)</span></span><br><span class="line"><span class="function"></span>     &#123;         </span><br><span class="line">    	<span class="keyword">int</span> temp;</span><br><span class="line">         <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;arr.Length<span class="number">-1</span>;i++)  <span class="comment">//arr.Length-1 趟</span></span><br><span class="line">         &#123;             </span><br><span class="line">             <span class="keyword">int</span> minVal=arr[i];             </span><br><span class="line">             <span class="keyword">int</span> minIndex=i;       <span class="comment">//无序区第一个      </span></span><br><span class="line">             <span class="keyword">for</span>(<span class="keyword">int</span> j=i+<span class="number">1</span>;j&lt;arr.Length;j++)             </span><br><span class="line">             &#123;                 </span><br><span class="line">                 <span class="keyword">if</span>(minVal&gt;arr[j])                 </span><br><span class="line">                 &#123;                     </span><br><span class="line">                     minVal=arr[j];                    </span><br><span class="line">                     minIndex=j;                 </span><br><span class="line">                 &#125;             </span><br><span class="line">             &#125;             </span><br><span class="line">             temp=arr[i];             </span><br><span class="line">             arr[i]=minVal;             </span><br><span class="line">             arr[minIndex]=temp;         </span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4、快速排序-QuickSort"><a href="#4、快速排序-QuickSort" class="headerlink" title="4、快速排序(QuickSort)"></a>4、快速排序(QuickSort)</h2><h4 id="4-1-算法描述"><a href="#4-1-算法描述" class="headerlink" title="4.1 算法描述"></a>4.1 算法描述</h4><p>（1）从数列中挑出一个元素，称为 “基准”（pivot）；</p>
+<p>（2）重新排序数列，所有元素比基准值小的摆放在基准前面，所有元素比基准值大的摆在基准的后面（相同的数可以到任一边）。在这个分区退出之后，该基准就处于数列的中间位置。这个称为分区（partition）操作；</p>
+<p>（3）递归地（recursive）把小于基准值元素的子数列和大于基准值元素的子数列排序。</p>
+<h4 id="4-2-动图演示"><a href="#4-2-动图演示" class="headerlink" title="4.2 动图演示"></a>4.2 动图演示</h4><p><img src="/2020/04/21/Algorithm/%E6%8E%92%E5%BA%8F/753725-20180905204949192-2069733284.gif" alt></p>
+<h4 id="4-3-代码实现"><a href="#4-3-代码实现" class="headerlink" title="4.3 代码实现"></a>4.3 代码实现</h4><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Class SortDemo</span><br><span class="line">&#123;</span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">QuickSort</span>(<span class="params"><span class="keyword">int</span>[] arr,<span class="keyword">int</span> low,<span class="keyword">int</span> high</span>)</span></span><br><span class="line"><span class="function"></span>     &#123;</span><br><span class="line">           <span class="keyword">if</span>(low&lt;high)</span><br><span class="line">           &#123;</span><br><span class="line">                 <span class="keyword">int</span> keyIndex=low;</span><br><span class="line">                 <span class="keyword">int</span> key=arr[low];</span><br><span class="line">                 <span class="keyword">int</span> first=low;</span><br><span class="line">                 <span class="keyword">int</span> last=high;               </span><br><span class="line">                 <span class="keyword">while</span>(first&lt;last)</span><br><span class="line">                 &#123;</span><br><span class="line">                        <span class="keyword">while</span>(last&gt;=key&amp;&amp;first&lt;last)</span><br><span class="line">                                   last--;</span><br><span class="line">                         Swap(arr,last,keyIndex);</span><br><span class="line">                         keyIndex=last;</span><br><span class="line">                         <span class="keyword">while</span>(first&lt;=key&amp;&amp;first&lt;last)</span><br><span class="line">                                  first++;</span><br><span class="line">                         Swap(arr,first,keyIndex);                         	                                      keyIndex=first;</span><br><span class="line">                 &#125;</span><br><span class="line">                 QuickSort(arr,low,keyIndex<span class="number">-1</span>);</span><br><span class="line">                 QuickSort(arr,keyIndex+<span class="number">1</span>,high);</span><br><span class="line">           &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Swap</span>(<span class="params"><span class="keyword">int</span>[] arr,i,j</span>)</span></span><br><span class="line"><span class="function"></span>     &#123;</span><br><span class="line">           <span class="keyword">int</span> temp=arr[i];</span><br><span class="line">           arr[i]=arr[j];</span><br><span class="line">           arr[j]=temp;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="5、归并排序"><a href="#5、归并排序" class="headerlink" title="5、归并排序"></a>5、归并排序</h2><p><img src="/2020/04/21/Algorithm/%E6%8E%92%E5%BA%8F/v2-cdda3f11c6efbc01577f5c29a9066772_b.webp" alt></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//data：表示待排序列</span></span><br><span class="line"><span class="comment">//left：表示当前序列的左边界</span></span><br><span class="line"><span class="comment">//right：表示当前序列的右边界</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(<span class="keyword">int</span>[] data, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (left &gt;= right)</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        <span class="comment">// 找出中间索引</span></span><br><span class="line">        <span class="keyword">int</span> center = (left + right) / <span class="number">2</span>;</span><br><span class="line">        <span class="comment">// 对左边数组进行递归</span></span><br><span class="line">        sort(data, left, center);</span><br><span class="line">        <span class="comment">// 对右边数组进行递归</span></span><br><span class="line">        sort(data, center + <span class="number">1</span>, right);</span><br><span class="line">        <span class="comment">// 合并</span></span><br><span class="line">        merge(data, left, center, right);</span><br><span class="line">        print(data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>合并：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span>[] data, <span class="keyword">int</span> left, <span class="keyword">int</span> center, <span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] tmpArr = <span class="keyword">new</span> <span class="keyword">int</span>[data.length];</span><br><span class="line">    <span class="keyword">int</span> mid = center + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> third = left;</span><br><span class="line">    <span class="keyword">int</span> tmp = left;</span><br><span class="line">    <span class="keyword">while</span> (left &lt;= center &amp;&amp; mid &lt;= right) &#123;</span><br><span class="line">        <span class="comment">// 从两个数组中取出最小的放入临时数组</span></span><br><span class="line">        <span class="keyword">if</span> (data[left] &lt;= data[mid]) &#123;</span><br><span class="line">            tmpArr[third++] = data[left++];</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            tmpArr[third++] = data[mid++];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 剩余部分依次放入临时数组</span></span><br><span class="line">    <span class="keyword">while</span> (mid &lt;= right) &#123;</span><br><span class="line">        tmpArr[third++] = data[mid++];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (left &lt;= center) &#123;</span><br><span class="line">        tmpArr[third++] = data[left++];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 将临时数组中的内容拷贝回原数组中</span></span><br><span class="line">    <span class="keyword">while</span> (tmp &lt;= right) &#123;</span><br><span class="line">        data[tmp] = tmpArr[tmp++];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="6、希尔排序"><a href="#6、希尔排序" class="headerlink" title="6、希尔排序"></a>6、希尔排序</h2><p>希尔排序有时又叫做 “缩小间隔排序”，它以插入排序为基础，将原来要排序的列表划分为一些子列表，再对每一个子列表执行插入排序，从而实现对插入排序性能的改进。划分子列的特定方法是希尔排序的关键。我们并不是将原始列表分成含有连续元素的子列，而是确定一个划分列表的增量 “i”，这个i更准确地说，是划分的间隔。然后把每间隔为i的所有元素选出来组成子列表，然后对每个子序列进行插入排序，最后当 i=1 时，对整体进行一次直接插入排序。</p>
+<p><img src="/2020/04/21/Algorithm/%E6%8E%92%E5%BA%8F/v2-f14e4169ff39bad42c3dd6c385ad9c72_b.webp" alt></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/21/Algorithm/%E6%8E%92%E5%BA%8F/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-javaweb-note/javaweb-note-SpringCloud" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -766,144 +936,10 @@
 
 
   
-    <article id="post-Test/pciture" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/11/Test/pciture/">picture</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/11/Test/pciture/" class="archive-article-date">
-  	<time datetime="2020-03-11T13:28:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="添加图片"><a href="#添加图片" class="headerlink" title="添加图片"></a>添加图片</h1><p>资源（Asset）代表 <code>source</code> 文件夹中除了文章以外的所有文件，例如图片、CSS、JS 文件等。比方说，如果你的Hexo项目中只有少量图片，那最简单的方法就是将它们放在 <code>source/images</code> 文件夹中。然后通过类似于 <code>![](/images/image.jpg)</code> 的方法访问它们。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/11/Test/pciture/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/11/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2020/01/11/hello-world/" class="archive-article-date">
-  	<time datetime="2020-01-11T14:47:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/11/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+    </nav>
   
 
 
